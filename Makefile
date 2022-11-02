@@ -16,6 +16,8 @@ CFILES = push_swap.c
 OBJS = ${CFILES:.c=.o}
 
 NAME = push_swap
+LIB = libft.a
+LIBDIR = ./Libft/
 
 RM = rm -rf
 ################################################################################
@@ -26,17 +28,23 @@ all:		${NAME}
 test:		all
 		./${NAME} 1 2 3 4 5
 
-${NAME}:	${OBJS}
-		@${CC} ${OBJS} -o ${NAME}
+${NAME}:	${LIB} ${OBJS}
+		${CC} -L ${LIBDIR} -lft ${OBJS} -o ${NAME}
+
+${LIB}:
+		@make -C ${LIBDIR} --silent
 
 %.o:		%.c
 		@${CC} -c ${CFLAGS} $< -o $@
 
 re:			fclean all
+		@make -C ${LIBDIR} re --silent
 
 fclean:		clean
+		@make -C ${LIBDIR} fclean --silent
 		@${RM} ${NAME}
 
 clean:
+		@make -C ${LIBDIR} clean --silent
 		@${RM} ${OBJS}
 ################################################################################

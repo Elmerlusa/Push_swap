@@ -15,8 +15,6 @@
 
 static int	check_input(int argc, char *argv[]);
 
-static int ft_isdigit(int c);
-
 int	main(int argc, char *argv[])
 {
 	printf("CI -> %i\n", check_input(argc, argv));
@@ -42,11 +40,4 @@ static int	check_input(int argc, char *argv[])
 		index++;
 	}
 	return (1);
-}
-
-static int ft_isdigit(int c)
-{
-	if (c >= '1' && c <= '9')
-		return (1);
-	return (0);
 }
