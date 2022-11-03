@@ -11,33 +11,29 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-
-static int	check_input(int argc, char *argv[]);
 
 int	main(int argc, char *argv[])
 {
-	printf("CI -> %i\n", check_input(argc, argv));
-	int index = 1;
-	while (index < argc)
-		printf("STACK -> %s\n", argv[index++]);
-	return (0);
-}
+	int	*stack_a;
+	int	stack_b[argc - 1];
 
-static int	check_input(int argc, char *argv[])
-{
-	int	index;
-
-	index = 0;
-	while (index < argc)
+	if (argc == 1)
+		return (0);
+	stack_a = get_input(argc, argv);
+	if (stack_a == NULL)
 	{
-		while (*argv[index])
-		{
-			if (ft_isdigit(*argv[index]) == 0)
-				return (0);
-			(argv[index])++;
-		}
-		index++;
+		printf("ERROR\n");
+		return (0);
 	}
-	return (1);
+
+
+
+	ft_bzero(stack_b, (argc - 1) * sizeof(int));
+	int index = argc - 1;
+	while (--index > 0)
+		printf("%i  %i\n", stack_a[index], stack_b[index]);
+	printf("%c  %c\n", '-', '-');
+	printf("%c  %c\n", 'a', 'b');
+	free(stack_a);
+	return (0);
 }

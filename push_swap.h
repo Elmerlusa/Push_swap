@@ -13,8 +13,9 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "./Libft/libft.h"
+# include "libft.h"
+# include <stdio.h>
+
+int	*get_input(int argc, char *argv[]);
 
 #endif
