@@ -27,8 +27,8 @@ int	*get_input(int argc, char *argv[])
 	index = 0;
 	while (++index < argc)
 	{
-		stack_a[argc - 1- index] = ft_atoi(argv[index]);
-		if (check_overflow(stack_a[argc - 1- index], argv[index]) == 0
+		stack_a[argc - 1 - index] = ft_atoi(argv[index]);
+		if (check_overflow(stack_a[argc - 1 - index], argv[index]) == 0
 			|| check_number(argv[index]) == 0)
 		{
 			free(stack_a);

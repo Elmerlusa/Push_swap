@@ -16,6 +16,11 @@
 # include "libft.h"
 # include <stdio.h>
 
-int	*get_input(int argc, char *argv[]);
+int		*get_input(int argc, char *argv[]);
+void	stack_swap(int **stack, int size);
+void	stack_push(int **stack_dst, int *size_dst, \
+					int **stack_src, int *size_src);
+void	stack_rotate(int **stack, int size);
+void	stack_reverse_rotate(int **stack, int size);
 
 #endif

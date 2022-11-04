@@ -12,7 +12,7 @@
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-CFILES = push_swap.c get_input.c
+CFILES = push_swap.c get_input.c moves.c
 OBJS = ${CFILES:.c=.o}
 INC = -I ./ -I ${LIBDIR}
 
@@ -27,8 +27,7 @@ RM = rm -rf
 all:		${NAME}
 
 test:		all
-		./${NAME} 1 2 3 4 5
-		./${NAME} 0 -2 +3 4
+		./${NAME} 0 7 3 2 1 9
 
 error:		all
 		./${NAME} 0 -2 3 4 3
