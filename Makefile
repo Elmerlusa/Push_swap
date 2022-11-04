@@ -12,9 +12,9 @@
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-CFILES = push_swap.c get_input.c moves.c
+CFILES = push_swap.c get_input.c one_stack_moves.c two_stack_moves.c
 OBJS = ${CFILES:.c=.o}
-INC = -I ./ -I ${LIBDIR}
+INC = -I ./ -I ./Libft
 
 NAME = push_swap
 LIB = libft.a
@@ -27,7 +27,7 @@ RM = rm -rf
 all:		${NAME}
 
 test:		all
-		./${NAME} 0 7 3 2 1 9
+		./${NAME} 2 1 3 6 5 8
 
 error:		all
 		./${NAME} 0 -2 3 4 3
@@ -39,23 +39,23 @@ error:		all
 		./${NAME} 0 -2 3 4 -2147483648
 		./${NAME} 0 -2 3 4 -2147483649
 
-${NAME}:	${LIB} ${OBJS}
-		@${CC} ${OBJS} -L ${LIBDIR} -l ft -o ${NAME}
+${NAME}:	${OBJS}
+		@make -s ${LIB}
+		@${CC} $^ -L ${LIBDIR} -l ft -o ${NAME}
 
 ${LIB}:
-		@make -C ${LIBDIR} --silent
+		@make -s -C ${LIBDIR}
 
 %.o:		%.c
-		@${CC} -c ${CFLAGS} $< -o $@ ${INC}
+		@${CC} -c ${CFLAGS} $^ -o $@ ${INC}
 
 re:			fclean all
-		@make -C ${LIBDIR} re --silent
 
 fclean:		clean
-		@make -C ${LIBDIR} fclean --silent
+		@make -s -C ${LIBDIR} fclean
 		@${RM} ${NAME}
 
 clean:
-		@make -C ${LIBDIR} clean --silent
+		@make -s -C ${LIBDIR} clean
 		@${RM} ${OBJS}
 ################################################################################

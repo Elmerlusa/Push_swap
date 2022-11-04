@@ -13,13 +13,12 @@
 #include "push_swap.h"
 
 void	print_stacks(int *stack_a, int *stack_b, int size_a, int size_b);
+static void	sort_stack(int **stack_a, int **stack_b, int size);
 
 int	main(int argc, char *argv[])
 {
 	int	*stack_a;
 	int	*stack_b;
-	int	size_a;
-	int	size_b;
 
 	if (argc == 1)
 		return (0);
@@ -28,21 +27,23 @@ int	main(int argc, char *argv[])
 	if (stack_a == NULL || stack_b == NULL)
 		printf("ERROR\n");
 	else
-	{
-		size_a = argc - 1;
-		size_b = 0;
-		stack_swap(&stack_a, size_a);
-		print_stacks(stack_a, stack_b, size_a, size_b);
-		stack_push(&stack_b, &size_b, &stack_a, &size_a);
-		print_stacks(stack_a, stack_b, size_a, size_b);
-		stack_rotate(&stack_a, size_a);
-		print_stacks(stack_a, stack_b, size_a, size_b);
-		stack_reverse_rotate(&stack_a, size_a);
-		print_stacks(stack_a, stack_b, size_a, size_b);
-	}
+		sort_stack(&stack_a, &stack_b, argc - 1);
 	free(stack_a);
 	free(stack_b);
 	return (0);
+}
+
+static void	sort_stack(int **stack_a, int **stack_b, int size_a)
+{
+	int	size_b;
+
+	size_b = 0;
+	// stack_swap(stack_b, size_b);
+	// stack_push(stack_b, &size_b, stack_a, &size_a);
+	// stack_reverse_rotate(stack_a, size_a);
+	// stack_rotate(stack_a, size_a);
+	print_stacks(*stack_a, *stack_b, size_a, size_b);
+	return;
 }
 
 void	print_stacks(int *stack_a, int *stack_b, int size_a, int size_b)
@@ -66,7 +67,7 @@ void	print_stacks(int *stack_a, int *stack_b, int size_a, int size_b)
 		while (index >= 0)
 		{
 			if (index >= size_a)
-				printf("    %i\n", stack_a[index]);
+				printf("    %i\n", stack_b[index]);
 			else
 				printf("%i   %i\n", stack_a[index], stack_b[index]);
 			index--;

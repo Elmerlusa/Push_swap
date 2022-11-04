@@ -22,5 +22,9 @@ void	stack_push(int **stack_dst, int *size_dst, \
 					int **stack_src, int *size_src);
 void	stack_rotate(int **stack, int size);
 void	stack_reverse_rotate(int **stack, int size);
+void	stack_swap_both(int **stack_a, int size_a, int **stack_b, int size_b);
+void	stack_rotate_both(int **stack_a, int size_a, int **stack_b, int size_b);
+void	stack_reverse_rotate_both(int **stack_a, int size_a, \
+								int **stack_b, int size_b);
 
 #endif

@@ -24,19 +24,11 @@ void	stack_swap(int **stack, int size)
 	return ;
 }
 
-void	stack_push(int **stack_dst, int *size_dst, int **stack_src, int *size_src)
-{
-	if (*size_src == 0)
-		return ;
-	(*stack_dst)[(*size_dst)++] = (*stack_src)[--(*size_src)];
-	return ;
-}
-
 void	stack_rotate(int **stack, int size)
 {
 	int	index;
 	int	aux1;
-	int aux2;
+	int	aux2;
 
 	if (size <= 1)
 		return ;
@@ -57,7 +49,7 @@ void	stack_reverse_rotate(int **stack, int size)
 {
 	int	index;
 	int	aux1;
-	int aux2;
+	int	aux2;
 
 	if (size <= 1)
 		return ;
