@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
-# include <stdio.h>
+# include "ft_printf.h"
 
 int		*get_input(int argc, char *argv[]);
 void	stack_swap(int **stack, int size);

@@ -73,7 +73,7 @@ static int	check_overflow(int num, char *expected_num)
 	if (ft_strncmp(arr_num, expected_num, ft_strlen(expected_num)) != 0)
 	{
 		free(arr_num);
-		printf("AQUI");
+		ft_printf("AQUI");
 		return (0);
 	}
 	free(arr_num);

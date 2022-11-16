@@ -25,14 +25,14 @@ void	stack_swap_both(int **stack_a, int size_a, int **stack_b, int size_b)
 {
 	stack_swap(stack_a, size_a);
 	stack_swap(stack_b, size_b);
-	printf("ss\n");
+	ft_printf("ss\n");
 }
 
 void	stack_rotate_both(int **stack_a, int size_a, int **stack_b, int size_b)
 {
 	stack_rotate(stack_a, size_a);
 	stack_rotate(stack_b, size_b);
-	printf("rr\n");
+	ft_printf("rr\n");
 }
 
 void	stack_reverse_rotate_both(int **stack_a, int size_a, \
@@ -40,5 +40,5 @@ void	stack_reverse_rotate_both(int **stack_a, int size_a, \
 {
 	stack_reverse_rotate(stack_a, size_a);
 	stack_reverse_rotate(stack_b, size_b);
-	printf("rrr\n");
+	ft_printf("rrr\n");
 }

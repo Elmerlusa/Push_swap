@@ -12,13 +12,19 @@
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
+
+SRCSDIR = ./srcs/
 CFILES = push_swap.c get_input.c one_stack_moves.c two_stack_moves.c
-OBJS = ${CFILES:.c=.o}
-INC = -I ./ -I ./Libft
+
+SRCS = ${addprefix ${SRCSDIR}, ${CFILES}}
+
+OBJS = ${SRCS:.c=.o}
+INC = -I ./includes/ -I ./libft/includes/
 
 NAME = push_swap
+
 LIB = libft.a
-LIBDIR = ./Libft/
+LIBDIR = ./libft/
 
 RM = rm -rf
 ################################################################################
