@@ -26,5 +26,8 @@ void	stack_swap_both(int **stack_a, int size_a, int **stack_b, int size_b);
 void	stack_rotate_both(int **stack_a, int size_a, int **stack_b, int size_b);
 void	stack_reverse_rotate_both(int **stack_a, int size_a, \
 								int **stack_b, int size_b);
+int		is_sorted(int *stack, int size);
+int		get_min_index(int *stack, int size);
+int		get_second_min_index(int *stack, int size);
 
 #endif

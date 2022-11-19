@@ -63,24 +63,22 @@ static int	check_duplicates(int *stack, int size)
 	return (1);
 }
 
-static int	check_overflow(int num, char *expected_num)
+int	check_overflow(int num, char *expected_num)
 {
 	char	*arr_num;
+	int		overflow;
 
+	overflow = 1;
 	arr_num = ft_itoa(num);
 	if (*expected_num == '+')
 		expected_num++;
 	if (ft_strncmp(arr_num, expected_num, ft_strlen(expected_num)) != 0)
-	{
-		free(arr_num);
-		ft_printf("AQUI");
-		return (0);
-	}
+		overflow = 0;
 	free(arr_num);
-	return (1);
+	return (overflow);
 }
 
-static int	check_number(char *number)
+int	check_number(char *number)
 {
 	int	index;
 

@@ -14,8 +14,6 @@
 
 void	print_stacks(int *stack_a, int *stack_b, int size_a, int size_b);
 static void	sort_stack(int **stack_a, int **stack_b, int size);
-static int	is_sorted(int *stack, int size);
-static int	get_min_index(int *stack, int size);
 
 int	main(int argc, char *argv[])
 {
@@ -38,59 +36,47 @@ int	main(int argc, char *argv[])
 static void	sort_stack(int **stack_a, int **stack_b, int size_a)
 {
 	int	size_b;
-	int	sorted;
+	int	index;
 
 	size_b = 0;
-	sorted = is_sorted(*stack_a, size_a);
-	while (sorted == 0  || size_b != 0)
+	while (is_sorted(*stack_a, size_a) == 0)
 	{
-		ft_printf("MIN -> %i\n", get_min_index(*stack_a, size_a));
-		break ;
-		// stack_swap(stack_b, size_b);
-		// stack_push(stack_b, &size_b, stack_a, &size_a);
-		// stack_reverse_rotate(stack_a, size_a);
-		// stack_rotate(stack_a, size_a);
-		sorted = is_sorted(*stack_a, size_a);
+		index = get_min_index(*stack_a, size_a);
+		if (index == size_a - 1)
+		{
+			ft_printf("pb\n");
+			stack_push(stack_b, &size_b, stack_a, &size_a);
+		}
+		else if (index == size_a - 2 &&
+				get_second_min_index(*stack_a, size_a) == size_a - 1)
+		{
+			ft_printf("sa\n");
+			stack_swap(stack_a, size_a);
+		}
+		else if (index >= size_a / 2)
+		{
+			ft_printf("ra\n");
+			stack_rotate(stack_a, size_a);
+		}
+		else
+		{
+			ft_printf("rra\n");
+			stack_reverse_rotate(stack_a, size_a);
+		}
+	}
+	while (size_b != 0)
+	{
+		ft_printf("pa\n");
+		stack_push(stack_a, &size_a, stack_b, &size_b);
 	}
 	print_stacks(*stack_a, *stack_b, size_a, size_b);
 	return;
 }
 
-static int	get_min_index(int *stack, int size)
-{
-	int	index;
-	int	min_index;
-
-	if (size == 0)
-		return (-1);
-	min_index = 0;
-	index = 1;
-	while (index < size)
-	{
-		if (stack[min_index] > stack[index])
-			min_index = index;
-		index++;
-	}
-	return (min_index);
-}
-
-static int	is_sorted(int *stack, int size)
-{
-	int	index;
-
-	index = 0;
-	while (index < size - 1)
-	{
-		if (stack[index] > stack[index + 1])
-			return (0);
-		index++;
-	}
-	return (1);
-}
-
 void	print_stacks(int *stack_a, int *stack_b, int size_a, int size_b)
 {
 	int index;
+	ft_printf("-------------------------------\n");
 	if (size_a > size_b)
 	{
 		index = size_a - 1;
@@ -117,4 +103,5 @@ void	print_stacks(int *stack_a, int *stack_b, int size_a, int size_b)
 	}
 	ft_printf("-   -\n");
 	ft_printf("a   b\n");
+	ft_printf("-------------------------------\n");
 }

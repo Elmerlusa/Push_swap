@@ -14,7 +14,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCSDIR = ./srcs/
-CFILES = push_swap.c get_input.c one_stack_moves.c two_stack_moves.c
+CFILES = push_swap.c get_input.c one_stack_moves.c two_stack_moves.c utils.c
 
 SRCS = ${addprefix ${SRCSDIR}, ${CFILES}}
 
