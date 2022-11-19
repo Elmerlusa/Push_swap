@@ -69,39 +69,39 @@ static void	sort_stack(int **stack_a, int **stack_b, int size_a)
 		ft_printf("pa\n");
 		stack_push(stack_a, &size_a, stack_b, &size_b);
 	}
-	print_stacks(*stack_a, *stack_b, size_a, size_b);
+	// print_stacks(*stack_a, *stack_b, size_a, size_b);
 	return;
 }
 
-void	print_stacks(int *stack_a, int *stack_b, int size_a, int size_b)
-{
-	int index;
-	ft_printf("-------------------------------\n");
-	if (size_a > size_b)
-	{
-		index = size_a - 1;
-		while (index >= 0)
-		{
-			if (index >= size_b)
-				ft_printf("%i    \n", stack_a[index]);
-			else
-				ft_printf("%i   %i\n", stack_a[index], stack_b[index]);
-			index--;
-		}
-	}
-	else
-	{
-		index = size_b - 1;
-		while (index >= 0)
-		{
-			if (index >= size_a)
-				ft_printf("    %i\n", stack_b[index]);
-			else
-				ft_printf("%i   %i\n", stack_a[index], stack_b[index]);
-			index--;
-		}
-	}
-	ft_printf("-   -\n");
-	ft_printf("a   b\n");
-	ft_printf("-------------------------------\n");
-}
+// void	print_stacks(int *stack_a, int *stack_b, int size_a, int size_b)
+// {
+// 	int index;
+// 	ft_printf("-------------------------------\n");
+// 	if (size_a > size_b)
+// 	{
+// 		index = size_a - 1;
+// 		while (index >= 0)
+// 		{
+// 			if (index >= size_b)
+// 				ft_printf("%i    \n", stack_a[index]);
+// 			else
+// 				ft_printf("%i   %i\n", stack_a[index], stack_b[index]);
+// 			index--;
+// 		}
+// 	}
+// 	else
+// 	{
+// 		index = size_b - 1;
+// 		while (index >= 0)
+// 		{
+// 			if (index >= size_a)
+// 				ft_printf("    %i\n", stack_b[index]);
+// 			else
+// 				ft_printf("%i   %i\n", stack_a[index], stack_b[index]);
+// 			index--;
+// 		}
+// 	}
+// 	ft_printf("-   -\n");
+// 	ft_printf("a   b\n");
+// 	ft_printf("-------------------------------\n");
+// }
