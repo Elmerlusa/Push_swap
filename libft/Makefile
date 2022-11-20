@@ -29,7 +29,7 @@ CFILESPTF = ft_printf.c ft_printchar.c ft_printhex.c ft_printint.c ft_printptr.c
 		ft_printstr.c ft_printuint.c
 
 GNLPATH = ./srcs/GetNextLine/
-CFILESGNL = get_next_line.c get_next_line_utils.c
+CFILESGNL = get_next_line.c
 
 SRCS = ${addprefix ${LFTPATH}, ${CFILESLFT}} \
 		${addprefix ${PTFPATH}, ${CFILESPTF}} \

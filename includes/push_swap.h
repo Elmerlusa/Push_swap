@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "ft_printf.h"
+# include "get_next_line.h"
 
 int		*get_input(int argc, char *argv[]);
 void	stack_swap(int **stack, int size);

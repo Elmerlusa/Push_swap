@@ -15,13 +15,17 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRCSDIR = ./srcs/
 CFILES = push_swap.c get_input.c one_stack_moves.c two_stack_moves.c utils.c
+CFILESB = checker.c get_input.c one_stack_moves.c two_stack_moves.c utils.c
 
 SRCS = ${addprefix ${SRCSDIR}, ${CFILES}}
+SRCSB = ${addprefix ${SRCSDIR}, ${CFILESB}}
 
 OBJS = ${SRCS:.c=.o}
+OBJSB = ${SRCSB:.c=.o}
 INC = -I ./includes/ -I ./libft/includes/
 
 NAME = push_swap
+NAMEB = checker
 
 LIB = libft.a
 LIBDIR = ./libft/
@@ -30,7 +34,7 @@ RM = rm -rf
 ################################################################################
 .PHONY: all re fclean clean test error
 ################################################################################
-all:		${NAME}
+all:		${NAME} ${NAMEB}
 
 test:		all
 		./${NAME} 2 1 3 6 5 8
@@ -44,6 +48,10 @@ error:		all
 		./${NAME} 0 -2 3 4 2147483648
 		./${NAME} 0 -2 3 4 -2147483648
 		./${NAME} 0 -2 3 4 -2147483649
+
+${NAMEB}:	${OBJSB}
+		@make -s ${LIB}
+		@${CC} $^ -L ${LIBDIR} -l ft -o ${NAMEB}
 
 ${NAME}:	${OBJS}
 		@make -s ${LIB}
