@@ -12,52 +12,52 @@
 
 #include "push_swap.h"
 
-int	get_min_index(int *stack, int size)
+int	get_min_index(t_stack stack)
 {
 	int	index;
 	int	min_index;
 
-	if (size == 0)
+	if (*(stack.size) == 0)
 		return (-1);
 	min_index = 0;
 	index = 1;
-	while (index < size)
+	while (index < *(stack.size))
 	{
-		if (stack[min_index] > stack[index])
+		if (stack.stack[min_index] > stack.stack[index])
 			min_index = index;
 		index++;
 	}
 	return (min_index);
 }
 
-int	get_second_min_index(int *stack, int size)
+int	get_second_min_index(t_stack stack)
 {
 	int	index;
 	int	min_index;
 	int	second_min_index;
 
-	if (size == 0)
+	if (*(stack.size) == 0)
 		return (-1);
-	min_index = get_min_index(stack, size);
+	min_index = get_min_index(stack);
 	second_min_index = 0;
 	index = 1;
-	while (index < size)
+	while (index < *(stack.size))
 	{
-		if (index != min_index && stack[second_min_index] > stack[index])
+		if (index != min_index && stack.stack[second_min_index] > stack.stack[index])
 			second_min_index = index;
 		index++;
 	}
 	return (second_min_index);
 }
 
-int	is_sorted(int *stack, int size)
+int	is_sorted(t_stack stack)
 {
 	int	index;
 
 	index = 0;
-	while (index < size - 1)
+	while (index < *(stack.size) - 1)
 	{
-		if (stack[index + 1] > stack[index])
+		if (stack.stack[index + 1] > stack.stack[index])
 			return (0);
 		index++;
 	}

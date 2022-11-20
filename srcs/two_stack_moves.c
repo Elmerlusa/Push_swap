@@ -12,33 +12,35 @@
 
 #include "push_swap.h"
 
-void	stack_push(int **stack_dst, int *size_dst, \
-					int **stack_src, int *size_src)
+void	stack_push(t_stack stack_dst, t_stack stack_src, char *move)
 {
-	if (*size_src == 0)
+	if (stack_src.size == 0)
 		return ;
-	(*stack_dst)[(*size_dst)++] = (*stack_src)[--(*size_src)];
+	*stack_src.size -= 1;
+	stack_dst.stack[*(stack_dst.size)] = stack_src.stack[*(stack_src.size)];
+	*stack_dst.size += 1;
+	if (move != NULL)
+		ft_printf("%s\n", move);
 	return ;
 }
 
-void	stack_swap_both(int **stack_a, int size_a, int **stack_b, int size_b)
+void	stack_swap_both(t_stack stack_a, t_stack stack_b)
 {
-	stack_swap(stack_a, size_a);
-	stack_swap(stack_b, size_b);
-	ft_printf("ss\n");
+	stack_swap(stack_a, NULL);
+	stack_swap(stack_b, NULL);
+	ft_printf("%s\n", SWAP_A_B);
 }
 
-void	stack_rotate_both(int **stack_a, int size_a, int **stack_b, int size_b)
+void	stack_rotate_both(t_stack stack_a, t_stack stack_b)
 {
-	stack_rotate(stack_a, size_a);
-	stack_rotate(stack_b, size_b);
-	ft_printf("rr\n");
+	stack_rotate(stack_a, NULL);
+	stack_rotate(stack_b, NULL);
+	ft_printf("%s\n", ROTATE_A_B);
 }
 
-void	stack_reverse_rotate_both(int **stack_a, int size_a, \
-								int **stack_b, int size_b)
+void	stack_reverse_rotate_both(t_stack stack_a, t_stack stack_b)
 {
-	stack_reverse_rotate(stack_a, size_a);
-	stack_reverse_rotate(stack_b, size_b);
-	ft_printf("rrr\n");
+	stack_reverse_rotate(stack_a, NULL);
+	stack_reverse_rotate(stack_b, NULL);
+	ft_printf("%s\n", R_ROTATE_A_B);
 }

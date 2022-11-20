@@ -14,18 +14,18 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCSDIR = ./srcs/
-CFILES = push_swap.c get_input.c one_stack_moves.c two_stack_moves.c utils.c
-CFILESB = checker.c get_input.c one_stack_moves.c two_stack_moves.c utils.c
+CFILES = push_swap.c get_input.c utils.c one_stack_moves.c two_stack_moves.c algorithm.c
+#CFILESB = checker.c get_input.c utils.c one_stack_moves.c two_stack_moves.c
 
 SRCS = ${addprefix ${SRCSDIR}, ${CFILES}}
-SRCSB = ${addprefix ${SRCSDIR}, ${CFILESB}}
+#SRCSB = ${addprefix ${SRCSDIR}, ${CFILESB}}
 
 OBJS = ${SRCS:.c=.o}
-OBJSB = ${SRCSB:.c=.o}
+#OBJSB = ${SRCSB:.c=.o}
 INC = -I ./includes/ -I ./libft/includes/
 
 NAME = push_swap
-NAMEB = checker
+#NAMEB = checker
 
 LIB = libft.a
 LIBDIR = ./libft/
@@ -49,9 +49,9 @@ error:		all
 		./${NAME} 0 -2 3 4 -2147483648
 		./${NAME} 0 -2 3 4 -2147483649
 
-${NAMEB}:	${OBJSB}
-		@make -s ${LIB}
-		@${CC} $^ -L ${LIBDIR} -l ft -o ${NAMEB}
+# ${NAMEB}:	${OBJSB}
+# 		@make -s ${LIB}
+# 		@${CC} $^ -L ${LIBDIR} -l ft -o ${NAMEB}
 
 ${NAME}:	${OBJS}
 		@make -s ${LIB}

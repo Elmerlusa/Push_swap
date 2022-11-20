@@ -12,55 +12,62 @@
 
 #include "push_swap.h"
 
-void	stack_swap(int **stack, int size)
+void	stack_swap(t_stack stack, char *move)
 {
 	int	aux;
 
-	if (size <= 1)
+	if (*(stack.size) <= 1)
 		return ;
-	aux = (*stack)[size - 1];
-	(*stack)[size - 1] = (*stack)[size - 2];
-	(*stack)[size - 2] = aux;
+	aux = stack.stack[*(stack.size) - 1];
+	stack.stack[*(stack.size) - 1] = stack.stack[*(stack.size) - 2];
+	stack.stack[*(stack.size) - 2] = aux;
+	if (move != NULL)
+		ft_printf("%s\n", move);
 	return ;
 }
 
-void	stack_rotate(int **stack, int size)
+void	stack_rotate(t_stack stack, char *move)
 {
 	int	index;
 	int	aux1;
 	int	aux2;
 
-	if (size <= 1)
+	if (*(stack.size) <= 1)
 		return ;
 	index = 0;
-	aux1 = (*stack)[index];
-	while (index < size - 1)
+	aux1 = stack.stack[index];
+	while (index < *(stack.size) - 1)
 	{
-		aux2 = (*stack)[index + 1];
-		(*stack)[index + 1] = aux1;
+		aux2 = stack.stack[index + 1];
+		stack.stack[index + 1] = aux1;
 		aux1 = aux2;
 		index++;
 	}
-	(*stack)[0] = aux1;
+	stack.stack[0] = aux1;
+	if (move != NULL)
+		ft_printf("%s\n", move);
 	return ;
 }
 
-void	stack_reverse_rotate(int **stack, int size)
+void	stack_reverse_rotate(t_stack stack, char *move)
 {
 	int	index;
 	int	aux1;
 	int	aux2;
 
-	if (size <= 1)
+	if (*(stack.size) <= 1)
 		return ;
-	index = size - 1;
-	aux1 = (*stack)[index];
+	index = *(stack.size) - 1;
+	aux1 = stack.stack[index];
 	while (index > 0)
 	{
-		aux2 = (*stack)[index - 1];
-		(*stack)[index - 1] = aux1;
+		aux2 = stack.stack[index - 1];
+		stack.stack[index - 1] = aux1;
 		aux1 = aux2;
 		index--;
 	}
-	(*stack)[size - 1] = aux1;
+	stack.stack[*(stack.size) - 1] = aux1;
+	if (move != NULL)
+		ft_printf("%s\n", move);
+	return ;
 }
