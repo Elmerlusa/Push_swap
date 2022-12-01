@@ -15,13 +15,16 @@
 static int	check_number(char *number);
 static int	check_overflow(int num, char *expected_num);
 static int	check_duplicates(int *stack, int size);
+static int	get_size(int argc, char *argv[]);
 
 int	*get_input(int argc, char *argv[])
 {
 	int	index;
 	int	*stack_a;
+	int	size;
 
-	stack_a = (int *)ft_calloc(argc - 1, sizeof(int));
+	size = get_size(argc, argv);
+	stack_a = (int *)ft_calloc(size, sizeof(int));
 	if (stack_a == NULL)
 		return (NULL);
 	index = 0;
@@ -41,6 +44,35 @@ int	*get_input(int argc, char *argv[])
 		return (NULL);
 	}
 	return (stack_a);
+}
+
+static int	get_size(int argc, char *argv[])
+{
+	int		size;
+	int		index;
+	char	**split;
+	int		aux;
+
+	size = 0;
+	index = 1;
+	while (index < argc)
+	{
+		if (ft_strchr(argv[index], ' ') == NULL)
+			size++;
+		else
+		{
+			split = ft_split(argv[index], ' ');
+			aux = 0;
+			while (split[aux++])
+				size++;
+			aux = 0;
+			while (split[aux])
+				free(split[aux++]);
+			free(split);
+		}
+		index++;
+	}
+	return (size);
 }
 
 static int	check_duplicates(int *stack, int size)
