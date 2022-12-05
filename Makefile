@@ -14,7 +14,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCSDIR = ./srcs/
-CFILES = push_swap.c get_input.c utils.c one_stack_moves.c two_stack_moves.c algorithm.c
+CFILES = push_swap.c get_size.c get_input.c utils.c one_stack_moves.c two_stack_moves.c algorithm.c
 #CFILESB = checker.c get_input.c utils.c one_stack_moves.c two_stack_moves.c
 
 SRCS = ${addprefix ${SRCSDIR}, ${CFILES}}
@@ -36,7 +36,8 @@ RM = rm -rf
 ################################################################################
 all:		${NAME} ${NAMEB}
 
-test:		all
+test:	${NAME}
+		./${NAME} "2 1 3 6 5 8"
 		./${NAME} 2 1 3 6 5 8
 
 error:		all

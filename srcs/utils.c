@@ -43,7 +43,8 @@ int	get_second_min_index(t_stack stack)
 	index = 1;
 	while (index < *(stack.size))
 	{
-		if (index != min_index && stack.stack[second_min_index] > stack.stack[index])
+		if (index != min_index
+			&& stack.stack[second_min_index] > stack.stack[index])
 			second_min_index = index;
 		index++;
 	}
@@ -62,4 +63,14 @@ int	is_sorted(t_stack stack)
 		index++;
 	}
 	return (1);
+}
+
+void	free_split(char **split)
+{
+	int	index;
+
+	index = 0;
+	while (split[index])
+		free(split[index++]);
+	free(split);
 }
