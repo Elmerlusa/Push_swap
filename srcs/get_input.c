@@ -14,6 +14,7 @@
 
 static int	check_number(char *number);
 static int	check_overflow(char *expected_num);
+static int	check_zero(char *expected_num);
 static int	check_duplicates(int *stack, int size);
 
 int	*get_input(char *argv[], int stack_size)
@@ -35,14 +36,31 @@ int	*get_input(char *argv[], int stack_size)
 		{
 			if (check_number(split[split_index]) == 0
 				|| check_overflow(split[split_index]) == 0)
+			{
+				free(stack_a);
 				return (NULL);
+			}
 			stack_a[stack_size - 1 - index++] = ft_atoi(split[split_index]);
 		}
 		free_split(split);
 	}
 	if (check_duplicates(stack_a, stack_size) == 0)
+	{
+		free(stack_a);
 		return (NULL);
+	}
 	return (stack_a);
+}
+
+static int	check_zero(char *expected_num)
+{
+	if (*expected_num == '+' || *expected_num == '-')
+		expected_num++;
+	while (*expected_num == '0')
+		expected_num++;
+	if (*expected_num != '\0')
+		return (0);
+	return (1);
 }
 
 static int	check_duplicates(int *stack, int size)
@@ -62,6 +80,7 @@ static int	check_duplicates(int *stack, int size)
 		}
 		index1++;
 	}
+	ft_printf("NOTDUPLICATED\n");
 	return (1);
 }
 
@@ -69,12 +88,23 @@ int	check_overflow(char *expected_num)
 {
 	char	*arr_num;
 	int		overflow;
+	int		index;
 
 	overflow = 1;
+	index = 0;
 	arr_num = ft_itoa(ft_atoi(expected_num));
+	if (ft_strncmp(arr_num, "0", ft_strlen(arr_num)) == 0)
+		return (check_zero(expected_num));
 	if (*expected_num == '+')
 		expected_num++;
-	if (ft_strncmp(arr_num, expected_num, ft_strlen(expected_num)) != 0)
+	else if (*expected_num == '-' && *arr_num == '-')
+	{
+		expected_num++;
+		index++;
+	}
+	while (*expected_num == '0')
+		expected_num++;
+	if (ft_strncmp(arr_num + index, expected_num, ft_strlen(expected_num)) != 0)
 		overflow = 0;
 	free(arr_num);
 	return (overflow);

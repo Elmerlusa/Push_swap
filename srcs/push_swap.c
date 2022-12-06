@@ -27,7 +27,7 @@ int	main(int argc, char *argv[])
 	stack_size = get_size(argv);
 	stack_a = create_stack(get_input(argv, stack_size), stack_size);
 	stack_b = create_stack((int *)ft_calloc(stack_size, sizeof(int)), 0);
-	if (check_stack(stack_a) || check_stack(stack_b))
+	if (check_stack(stack_a) && check_stack(stack_b))
 		sort_stack(stack_a, stack_b);
 	else
 		ft_putstr_fd("Error\n", 2);
