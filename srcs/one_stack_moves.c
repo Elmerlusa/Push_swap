@@ -22,7 +22,7 @@ void	stack_swap(t_stack stack, char *move)
 	stack.stack[*(stack.size) - 1] = stack.stack[*(stack.size) - 2];
 	stack.stack[*(stack.size) - 2] = aux;
 	if (move != NULL)
-		ft_printf("%s\n", move);
+		ft_printf("%s", move);
 	return ;
 }
 
@@ -45,7 +45,7 @@ void	stack_rotate(t_stack stack, char *move)
 	}
 	stack.stack[0] = aux1;
 	if (move != NULL)
-		ft_printf("%s\n", move);
+		ft_printf("%s", move);
 	return ;
 }
 
@@ -68,6 +68,6 @@ void	stack_reverse_rotate(t_stack stack, char *move)
 	}
 	stack.stack[*(stack.size) - 1] = aux1;
 	if (move != NULL)
-		ft_printf("%s\n", move);
+		ft_printf("%s", move);
 	return ;
 }

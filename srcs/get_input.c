@@ -80,7 +80,6 @@ static int	check_duplicates(int *stack, int size)
 		}
 		index1++;
 	}
-	ft_printf("NOTDUPLICATED\n");
 	return (1);
 }
 

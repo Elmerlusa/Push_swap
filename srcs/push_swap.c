@@ -12,9 +12,8 @@
 
 #include "push_swap.h"
 
-static t_stack	create_stack(int *stack, int size);
-static int		check_stack(t_stack stack);
-static void		free_stack(t_stack stack);
+static void	sort_stack(t_stack stack_a, t_stack stack_b);
+static void	sort_algorithm(t_stack stack_a, t_stack stack_b);
 
 int	main(int argc, char *argv[])
 {
@@ -36,26 +35,28 @@ int	main(int argc, char *argv[])
 	return (0);
 }
 
-static int	check_stack(t_stack stack)
+static void	sort_stack(t_stack stack_a, t_stack stack_b)
 {
-	if (stack.stack == NULL || stack.size == NULL)
-		return (0);
-	return (1);
-}
-
-static void	free_stack(t_stack stack)
-{
-	free(stack.size);
-	free(stack.stack);
+	while (is_sorted(stack_a) == 0)
+		sort_algorithm(stack_a, stack_b);
+	while (*(stack_b.size) != 0)
+		stack_push(stack_a, stack_b, PUSH_A);
 	return ;
 }
 
-static t_stack	create_stack(int *stack, int size)
+static void	sort_algorithm(t_stack stack_a, t_stack stack_b)
 {
-	t_stack	new_stack;
+	int	index;
 
-	new_stack.size = (int *)ft_calloc(1, sizeof(int));
-	*(new_stack.size) = size;
-	new_stack.stack = stack;
-	return (new_stack);
+	index = get_min_index(stack_a);
+	if (index == *(stack_a.size) - 1)
+		stack_push(stack_b, stack_a, PUSH_B);
+	else if (index == *(stack_a.size) - 2
+		&& get_second_min_index(stack_a) == *(stack_a.size) - 1)
+		stack_swap(stack_a, SWAP_A);
+	else if (index >= *(stack_a.size) / 2)
+		stack_rotate(stack_a, ROTATE_A);
+	else
+		stack_reverse_rotate(stack_a, R_ROTATE_A);
+	return ;
 }

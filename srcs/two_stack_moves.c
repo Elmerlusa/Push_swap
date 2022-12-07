@@ -20,7 +20,7 @@ void	stack_push(t_stack stack_dst, t_stack stack_src, char *move)
 	stack_dst.stack[*(stack_dst.size)] = stack_src.stack[*(stack_src.size)];
 	*stack_dst.size += 1;
 	if (move != NULL)
-		ft_printf("%s\n", move);
+		ft_printf("%s", move);
 	return ;
 }
 
@@ -28,19 +28,19 @@ void	stack_swap_both(t_stack stack_a, t_stack stack_b)
 {
 	stack_swap(stack_a, NULL);
 	stack_swap(stack_b, NULL);
-	ft_printf("%s\n", SWAP_A_B);
+	ft_printf("%s", SWAP_A_B);
 }
 
 void	stack_rotate_both(t_stack stack_a, t_stack stack_b)
 {
 	stack_rotate(stack_a, NULL);
 	stack_rotate(stack_b, NULL);
-	ft_printf("%s\n", ROTATE_A_B);
+	ft_printf("%s", ROTATE_A_B);
 }
 
 void	stack_reverse_rotate_both(t_stack stack_a, t_stack stack_b)
 {
 	stack_reverse_rotate(stack_a, NULL);
 	stack_reverse_rotate(stack_b, NULL);
-	ft_printf("%s\n", R_ROTATE_A_B);
+	ft_printf("%s", R_ROTATE_A_B);
 }

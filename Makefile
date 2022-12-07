@@ -14,21 +14,23 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCSDIR = ./srcs/
-CFILES = push_swap.c get_size.c get_input.c utils.c one_stack_moves.c two_stack_moves.c algorithm.c
-#CFILESB = checker.c get_input.c utils.c one_stack_moves.c two_stack_moves.c
+CFILES = push_swap.c get_size.c get_input.c utils.c one_stack_moves.c \
+		two_stack_moves.c stack_utils.c
+CFILESB = checker.c get_size.c get_input.c utils.c one_stack_moves.c \
+		two_stack_moves.c stack_utils.c
 
 SRCS = ${addprefix ${SRCSDIR}, ${CFILES}}
-#SRCSB = ${addprefix ${SRCSDIR}, ${CFILESB}}
+SRCSB = ${addprefix ${SRCSDIR}, ${CFILESB}}
 
 OBJS = ${SRCS:.c=.o}
-#OBJSB = ${SRCSB:.c=.o}
+OBJSB = ${SRCSB:.c=.o}
 INC = -I ./includes/ -I ./libft/includes/
 
 NAME = push_swap
-#NAMEB = checker
+NAMEB = checker
 
-LIB = libft.a
 LIBDIR = ./libft/
+LIB = ${LIBDIR}libft.a
 
 RM = rm -rf
 ################################################################################
@@ -36,9 +38,9 @@ RM = rm -rf
 ################################################################################
 all:		${NAME} ${NAMEB}
 
-test:	${NAME}
+test:	${NAME} ${NAMEB}
 		./${NAME} "2 1 3 6 5 8"
-		./${NAME} 2 1 3 6 5 8
+		./${NAME} "2 1 3 6 5 8" | ./${NAMEB} "2 1 3 6 5 8"
 
 error:		all
 		./${NAME} 0 -2 3 4 3
@@ -50,12 +52,10 @@ error:		all
 		./${NAME} 0 -2 3 4 -2147483648
 		./${NAME} 0 -2 3 4 -2147483649
 
-# ${NAMEB}:	${OBJSB}
-# 		@make -s ${LIB}
-# 		@${CC} $^ -L ${LIBDIR} -l ft -o ${NAMEB}
+${NAMEB}:	${OBJSB} ${LIB}
+		@${CC} $^ -L ${LIBDIR} -l ft -o ${NAMEB}
 
-${NAME}:	${OBJS}
-		@make -s ${LIB}
+${NAME}:	${OBJS} ${LIB}
 		@${CC} $^ -L ${LIBDIR} -l ft -o ${NAME}
 
 ${LIB}:

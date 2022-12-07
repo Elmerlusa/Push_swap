@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: javmarti <javmarti@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 17:40:15 by javmarti          #+#    #+#             */
-/*   Updated: 2022/10/19 17:40:15 by javmarti         ###   ########.fr       */
+/*   Created: 2022/12/07 14:00:31 by javmarti          #+#    #+#             */
+/*   Updated: 2022/12/07 14:00:31 by javmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef CHECKER_H
+# define CHECKER_H
 
 # include "libft.h"
 # include "ft_printf.h"
+# include "get_next_line.h"
 
 # define SWAP_A "sa\n"
 # define SWAP_B "sb\n"
@@ -39,13 +40,11 @@ int		get_size(char *argv[]);
 void	stack_swap(t_stack stack, char *move);
 void	stack_push(t_stack stack_dst, t_stack stack_src, char *move);
 void	stack_rotate(t_stack stack, char *move);
-void	stack_reverse_rotate(t_stack stac, char *movek);
+void	stack_reverse_rotate(t_stack stack, char *move);
 void	stack_swap_both(t_stack stack_a, t_stack stack_b);
 void	stack_rotate_both(t_stack stack_a, t_stack stack_b);
 void	stack_reverse_rotate_both(t_stack stack_a, t_stack stack_b);
 int		is_sorted(t_stack stack);
-int		get_min_index(t_stack stack);
-int		get_second_min_index(t_stack stack);
 void	free_split(char **split);
 t_stack	create_stack(int *stack, int size);
 int		check_stack(t_stack stack);
