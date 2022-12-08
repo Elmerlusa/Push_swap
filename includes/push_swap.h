@@ -40,9 +40,9 @@ void	stack_swap(t_stack stack, char *move);
 void	stack_push(t_stack stack_dst, t_stack stack_src, char *move);
 void	stack_rotate(t_stack stack, char *move);
 void	stack_reverse_rotate(t_stack stac, char *movek);
-void	stack_swap_both(t_stack stack_a, t_stack stack_b);
-void	stack_rotate_both(t_stack stack_a, t_stack stack_b);
-void	stack_reverse_rotate_both(t_stack stack_a, t_stack stack_b);
+void	stack_swap_both(t_stack stack_a, t_stack stack_b, char *move);
+void	stack_rotate_both(t_stack stack_a, t_stack stack_b, char *move);
+void	stack_reverse_rotate_both(t_stack stack_a, t_stack stack_b, char *move);
 int		is_sorted(t_stack stack);
 int		get_min_index(t_stack stack);
 int		get_second_min_index(t_stack stack);
@@ -50,5 +50,6 @@ void	free_split(char **split);
 t_stack	create_stack(int *stack, int size);
 int		check_stack(t_stack stack);
 void	free_stack(t_stack stack);
+int		check_zero(char *expected_num);
 
 #endif

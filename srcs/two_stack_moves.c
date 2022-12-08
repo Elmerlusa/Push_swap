@@ -24,23 +24,26 @@ void	stack_push(t_stack stack_dst, t_stack stack_src, char *move)
 	return ;
 }
 
-void	stack_swap_both(t_stack stack_a, t_stack stack_b)
+void	stack_swap_both(t_stack stack_a, t_stack stack_b, char *move)
 {
 	stack_swap(stack_a, NULL);
 	stack_swap(stack_b, NULL);
-	ft_printf("%s", SWAP_A_B);
+	if (move != NULL)
+		ft_printf("%s", move);
 }
 
-void	stack_rotate_both(t_stack stack_a, t_stack stack_b)
+void	stack_rotate_both(t_stack stack_a, t_stack stack_b, char *move)
 {
 	stack_rotate(stack_a, NULL);
 	stack_rotate(stack_b, NULL);
-	ft_printf("%s", ROTATE_A_B);
+	if (move != NULL)
+		ft_printf("%s", move);
 }
 
-void	stack_reverse_rotate_both(t_stack stack_a, t_stack stack_b)
+void	stack_reverse_rotate_both(t_stack stack_a, t_stack stack_b, char *move)
 {
 	stack_reverse_rotate(stack_a, NULL);
 	stack_reverse_rotate(stack_b, NULL);
-	ft_printf("%s", R_ROTATE_A_B);
+	if (move != NULL)
+		ft_printf("%s", move);
 }

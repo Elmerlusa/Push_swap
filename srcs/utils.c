@@ -74,3 +74,14 @@ void	free_split(char **split)
 		free(split[index++]);
 	free(split);
 }
+
+int	check_zero(char *expected_num)
+{
+	if (*expected_num == '+' || *expected_num == '-')
+		expected_num++;
+	while (*expected_num == '0')
+		expected_num++;
+	if (*expected_num != '\0')
+		return (0);
+	return (1);
+}

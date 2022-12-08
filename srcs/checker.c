@@ -15,6 +15,7 @@
 static t_list	**get_moves(void);
 static int		execute_moves(t_stack stack_a, t_stack stack_b, \
 							t_list **move_list);
+static int		moves(t_stack stack_a, t_stack stack_b, char *move);
 
 int	main(int argc, char *argv[])
 {
@@ -45,6 +46,35 @@ int	main(int argc, char *argv[])
 	return (0);
 }
 
+static int	moves(t_stack stack_a, t_stack stack_b, char *move)
+{
+	if (ft_strncmp(move, SWAP_A, ft_strlen(move)) == 0)
+		stack_swap(stack_a, NULL);
+	else if (ft_strncmp(move, SWAP_B, ft_strlen(move)) == 0)
+		stack_swap(stack_b, NULL);
+	else if (ft_strncmp(move, SWAP_A_B, ft_strlen(move)) == 0)
+		stack_swap_both(stack_a, stack_b, NULL);
+	else if (ft_strncmp(move, PUSH_A, ft_strlen(move)) == 0)
+		stack_push(stack_a, stack_b, NULL);
+	else if (ft_strncmp(move, PUSH_B, ft_strlen(move)) == 0)
+		stack_push(stack_b, stack_a, NULL);
+	else if (ft_strncmp(move, ROTATE_A, ft_strlen(move)) == 0)
+		stack_rotate(stack_a, NULL);
+	else if (ft_strncmp(move, ROTATE_B, ft_strlen(move)) == 0)
+		stack_rotate(stack_a, NULL);
+	else if (ft_strncmp(move, ROTATE_A_B, ft_strlen(move)) == 0)
+		stack_rotate_both(stack_a, stack_b, NULL);
+	else if (ft_strncmp(move, R_ROTATE_A, ft_strlen(move)) == 0)
+		stack_reverse_rotate(stack_a, NULL);
+	else if (ft_strncmp(move, R_ROTATE_B, ft_strlen(move)) == 0)
+		stack_reverse_rotate(stack_b, NULL);
+	else if (ft_strncmp(move, R_ROTATE_A_B, ft_strlen(move)) == 0)
+		stack_reverse_rotate_both(stack_a, stack_b, NULL);
+	else
+		return (-1);
+	return (1);
+}
+
 static int	execute_moves(t_stack stack_a, t_stack stack_b, t_list **move_list)
 {
 	char	*move;
@@ -52,29 +82,7 @@ static int	execute_moves(t_stack stack_a, t_stack stack_b, t_list **move_list)
 	while (*move_list != NULL)
 	{
 		move = (*move_list)->content;
-		if (ft_strncmp(move, SWAP_A, ft_strlen(move)) == 0)
-			stack_swap(stack_a, NULL);
-		else if (ft_strncmp(move, SWAP_B, ft_strlen(move)) == 0)
-			stack_swap(stack_b, NULL);
-		else if (ft_strncmp(move, SWAP_A_B, ft_strlen(move)) == 0)
-			stack_swap_both(stack_a, stack_b);
-		else if (ft_strncmp(move, PUSH_A, ft_strlen(move)) == 0)
-			stack_push(stack_a, stack_b, NULL);
-		else if (ft_strncmp(move, PUSH_B, ft_strlen(move)) == 0)
-			stack_push(stack_b, stack_a, NULL);
-		else if (ft_strncmp(move, ROTATE_A, ft_strlen(move)) == 0)
-			stack_rotate(stack_a, NULL);
-		else if (ft_strncmp(move, ROTATE_B, ft_strlen(move)) == 0)
-			stack_rotate(stack_a, NULL);
-		else if (ft_strncmp(move, ROTATE_A_B, ft_strlen(move)) == 0)
-			stack_rotate_both(stack_a, stack_b);
-		else if (ft_strncmp(move, R_ROTATE_A, ft_strlen(move)) == 0)
-			stack_reverse_rotate(stack_a, NULL);
-		else if (ft_strncmp(move, R_ROTATE_B, ft_strlen(move)) == 0)
-			stack_reverse_rotate(stack_b, NULL);
-		else if (ft_strncmp(move, R_ROTATE_A_B, ft_strlen(move)) == 0)
-			stack_reverse_rotate_both(stack_a, stack_b);
-		else
+		if (moves(stack_a, stack_b, move) == -1)
 			return (-1);
 		*move_list = (*move_list)->next;
 	}

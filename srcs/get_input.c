@@ -14,15 +14,14 @@
 
 static int	check_number(char *number);
 static int	check_overflow(char *expected_num);
-static int	check_zero(char *expected_num);
 static int	check_duplicates(int *stack, int size);
+static int	check_value_input(char *arg, int *stack, \
+							int stack_size, int *index);
 
 int	*get_input(char *argv[], int stack_size)
 {
 	int		index;
 	int		*stack_a;
-	char	**split;
-	int		split_index;
 
 	stack_a = (int *)ft_calloc(stack_size, sizeof(int));
 	if (stack_a == NULL)
@@ -30,19 +29,11 @@ int	*get_input(char *argv[], int stack_size)
 	index = 0;
 	while (*(++argv))
 	{
-		split = ft_split(*argv, ' ');
-		split_index = -1;
-		while (split[++split_index])
+		if (check_value_input(*argv, stack_a, stack_size, &index) == 0)
 		{
-			if (check_number(split[split_index]) == 0
-				|| check_overflow(split[split_index]) == 0)
-			{
-				free(stack_a);
-				return (NULL);
-			}
-			stack_a[stack_size - 1 - index++] = ft_atoi(split[split_index]);
+			free(stack_a);
+			return (NULL);
 		}
-		free_split(split);
 	}
 	if (check_duplicates(stack_a, stack_size) == 0)
 	{
@@ -52,14 +43,22 @@ int	*get_input(char *argv[], int stack_size)
 	return (stack_a);
 }
 
-static int	check_zero(char *expected_num)
+static int	check_value_input(char *arg, int *stack, int stack_size, int *index)
 {
-	if (*expected_num == '+' || *expected_num == '-')
-		expected_num++;
-	while (*expected_num == '0')
-		expected_num++;
-	if (*expected_num != '\0')
-		return (0);
+	char	**split;
+	int		split_index;
+
+	split = ft_split(arg, ' ');
+	split_index = -1;
+	while (split[++split_index])
+	{
+		if (check_number(split[split_index]) == 0
+			|| check_overflow(split[split_index]) == 0)
+			return (0);
+		stack[stack_size - 1 - *index] = ft_atoi(split[split_index]);
+		*(index) += 1;
+	}
+	free_split(split);
 	return (1);
 }
 
@@ -75,7 +74,7 @@ static int	check_duplicates(int *stack, int size)
 		while (index2 < size)
 		{
 			if (stack[index1] == stack[index2])
-				return (0);
+				return (-1);
 			index2++;
 		}
 		index1++;
