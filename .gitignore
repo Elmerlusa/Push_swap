@@ -5,3 +5,4 @@ checker_linux
 checker_Mac
 push_swap_tester
 checker
+*.log

@@ -68,9 +68,9 @@ re:			fclean all
 
 fclean:		clean
 		@make -s -C ${LIBDIR} fclean
-		@${RM} ${NAME}
+		@${RM} ${NAME} ${NAMEB}
 
 clean:
 		@make -s -C ${LIBDIR} clean
-		@${RM} ${OBJS}
+		@${RM} ${OBJS} ${OBJSB}
 ################################################################################
