@@ -21,8 +21,8 @@ void	long_stack_algorithm(t_stack stack_a, t_stack stack_b)
 	int		slot_size;
 	t_stack	slot;
 
-	num_slots = 2 + *(stack_a.size) * 3 / 100 - *(stack_a.size) * 6 / 500;
-	slot_size = *(stack_a.size) / num_slots;
+	num_slots = 2 + *(stack_a.size) * 4 / 100 - *(stack_a.size) * 9 / 500;
+	slot_size = *(stack_a.size) / num_slots - 1;
 	while (num_slots-- > 0 && is_sorted(stack_a) == 0)
 	{
 		slot = get_slot(stack_a, slot_size);
@@ -31,8 +31,9 @@ void	long_stack_algorithm(t_stack stack_a, t_stack stack_b)
 		push_slot(stack_b, stack_a, slot);
 		free_stack(slot);
 	}
-	while (*(stack_a.size) != 0)
+	while (*(stack_a.size) > 3)
 		push_num(stack_b, stack_a, get_min_num(stack_a));
+	sort_stack_3(stack_a);
 	while (*(stack_b.size) != 0)
 		push_max(stack_a, stack_b);
 	return ;
