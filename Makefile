@@ -11,12 +11,11 @@
 # **************************************************************************** #
 
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 SRCSDIR = ./srcs/
 CFILES = push_swap.c get_size.c get_input.c utils.c one_stack_moves.c \
-		two_stack_moves.c stack_utils.c short_stack_algorithm.c \
-		long_stack_algorithm.c slots.c
+		two_stack_moves.c stack_utils.c slots.c algorithm.c
 CFILESB = checker.c get_size.c get_input.c utils.c one_stack_moves.c \
 		two_stack_moves.c stack_utils.c
 

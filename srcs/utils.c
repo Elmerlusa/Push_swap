@@ -12,45 +12,40 @@
 
 #include "push_swap.h"
 
-int	get_min_index(t_stack stack)
+int	get_max_num(t_stack stack)
 {
 	int	index;
-	int	min_index;
+	int	index_max;
 
 	if (*(stack.size) == 0)
 		return (-1);
-	min_index = 0;
+	index_max = 0;
 	index = 1;
 	while (index < *(stack.size))
 	{
-		if (stack.stack[min_index] > stack.stack[index])
-			min_index = index;
+		if (stack.stack[index_max] < stack.stack[index])
+			index_max = index;
 		index++;
 	}
-	return (min_index);
+	return (stack.stack[index_max]);
 }
 
-int	get_second_min_index(t_stack stack)
+int	get_min_num(t_stack stack)
 {
 	int	index;
-	int	min_index;
-	int	second_min_index;
+	int	index_min;
 
 	if (*(stack.size) == 0)
 		return (-1);
-	min_index = get_min_index(stack);
-	second_min_index = 0;
-	if (min_index == 0)
-		second_min_index = 1;
+	index_min = 0;
 	index = 1;
 	while (index < *(stack.size))
 	{
-		if (index != min_index
-			&& stack.stack[second_min_index] > stack.stack[index])
-			second_min_index = index;
+		if (stack.stack[index_min] > stack.stack[index])
+			index_min = index;
 		index++;
 	}
-	return (second_min_index);
+	return (stack.stack[index_min]);
 }
 
 int	is_sorted(t_stack stack)

@@ -46,8 +46,8 @@ void	stack_rotate_both(t_stack stack_a, t_stack stack_b, char *move);
 void	stack_reverse_rotate_both(t_stack stack_a, t_stack stack_b, char *move);
 
 int		is_sorted(t_stack stack);
-int		get_min_index(t_stack stack);
-int		get_second_min_index(t_stack stack);
+int		get_min_num(t_stack stack);
+int		get_max_num(t_stack stack);
 void	free_split(char **split);
 t_stack	create_stack(int *stack, int size);
 int		check_stack(t_stack stack);
@@ -56,12 +56,11 @@ int		check_zero(char *expected_num);
 
 void	short_stack_algorithm(t_stack stack_a, t_stack stack_b);
 void	long_stack_algorithm(t_stack stack_a, t_stack stack_b);
-void	push_min(t_stack stack_dst, t_stack stack_src);
 
 t_stack	get_slot(t_stack stack, int size);
-int		in_slot(t_stack slot, int size, int num);
+int		in_slot(t_stack slot, int num);
 void	push_slot(t_stack stack_dst, t_stack stack_src, t_stack slot);
-int		get_index_num(t_stack stack, int num);
+int		get_num_index(t_stack stack, int num);
 void	push_num(t_stack stack_dst, t_stack stack_src, int num);
 int		num_to_push(t_stack stack, t_stack slot);
 

@@ -16,14 +16,14 @@ void	push_num(t_stack stack_dst, t_stack stack_src, int num)
 {
 	int	index;
 
-	index = get_index_num(stack_src, num);
+	index = get_num_index(stack_src, num);
 	while (index != *(stack_src.size) - 1)
 	{
 		if (index >= *(stack_src.size) / 2)
 			stack_rotate(stack_src, ROTATE_A);
 		else
 			stack_reverse_rotate(stack_src, R_ROTATE_A);
-		index = get_index_num(stack_src, num);
+		index = get_num_index(stack_src, num);
 	}
 	stack_push(stack_dst, stack_src, PUSH_B);
 	return ;
@@ -37,7 +37,7 @@ int	num_to_push(t_stack stack, t_stack slot)
 	index = 0;
 	while (index < *(stack.size))
 	{
-		if (in_slot(slot, *(slot.size), stack.stack[index]))
+		if (in_slot(slot, stack.stack[index]))
 			break ;
 		index++;
 	}
@@ -45,7 +45,7 @@ int	num_to_push(t_stack stack, t_stack slot)
 	index = *(stack.size) - 1;
 	while (index >= 0)
 	{
-		if (in_slot(slot, *(slot.size), stack.stack[index]))
+		if (in_slot(slot, stack.stack[index]))
 			break ;
 		index--;
 	}
@@ -77,34 +77,34 @@ t_stack	get_slot(t_stack stack, int size)
 	int		slot_index;
 	int		index_to_add;
 
-	slot = create_stack((int *)ft_calloc(size, sizeof(int)), size);
+	slot = create_stack((int *)ft_calloc(size, sizeof(int)), 0);
 	if (check_stack(slot) == 0)
 		return (slot);
 	slot_index = 0;
 	while (slot_index < size)
 	{
 		index_to_add = 0;
-		while (in_slot(slot, slot_index, stack.stack[index_to_add]))
+		while (in_slot(slot, stack.stack[index_to_add]))
 			index_to_add++;
-		index = 0;
-		while (index < *(stack.size))
+		index = -1;
+		while (++index < *(stack.size))
 		{
 			if (stack.stack[index] < stack.stack[index_to_add]
-				&& in_slot(slot, slot_index, stack.stack[index]) == 0)
+				&& in_slot(slot, stack.stack[index]) == 0)
 				index_to_add = index;
-			index++;
 		}
 		slot.stack[slot_index++] = stack.stack[index_to_add];
+		*(slot.size) += 1;
 	}
 	return (slot);
 }
 
-int	in_slot(t_stack slot, int size, int num)
+int	in_slot(t_stack slot, int num)
 {
 	int	index;
 
 	index = 0;
-	while (index < size)
+	while (index < *(slot.size))
 	{
 		if (slot.stack[index] == num)
 			return (1);

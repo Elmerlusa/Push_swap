@@ -36,7 +36,7 @@ t_stack	create_stack(int *stack, int size)
 	return (new_stack);
 }
 
-int	get_index_num(t_stack stack, int num)
+int	get_num_index(t_stack stack, int num)
 {
 	int	index;
 
