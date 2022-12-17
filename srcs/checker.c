@@ -61,7 +61,7 @@ static int	moves(t_stack stack_a, t_stack stack_b, char *move)
 	else if (ft_strncmp(move, ROTATE_A, ft_strlen(move)) == 0)
 		stack_rotate(stack_a, NULL);
 	else if (ft_strncmp(move, ROTATE_B, ft_strlen(move)) == 0)
-		stack_rotate(stack_a, NULL);
+		stack_rotate(stack_b, NULL);
 	else if (ft_strncmp(move, ROTATE_A_B, ft_strlen(move)) == 0)
 		stack_rotate_both(stack_a, stack_b, NULL);
 	else if (ft_strncmp(move, R_ROTATE_A, ft_strlen(move)) == 0)

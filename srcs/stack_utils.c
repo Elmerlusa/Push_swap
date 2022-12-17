@@ -35,3 +35,17 @@ t_stack	create_stack(int *stack, int size)
 	new_stack.stack = stack;
 	return (new_stack);
 }
+
+int	get_index_num(t_stack stack, int num)
+{
+	int	index;
+
+	index = 0;
+	while (index < *(stack.size))
+	{
+		if (stack.stack[index] == num)
+			break ;
+		index++;
+	}
+	return (index);
+}

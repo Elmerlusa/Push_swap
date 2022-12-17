@@ -40,6 +40,8 @@ int	get_second_min_index(t_stack stack)
 		return (-1);
 	min_index = get_min_index(stack);
 	second_min_index = 0;
+	if (min_index == 0)
+		second_min_index = 1;
 	index = 1;
 	while (index < *(stack.size))
 	{

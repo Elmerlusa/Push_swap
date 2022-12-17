@@ -11,11 +11,12 @@
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror
 
 SRCSDIR = ./srcs/
 CFILES = push_swap.c get_size.c get_input.c utils.c one_stack_moves.c \
-		two_stack_moves.c stack_utils.c
+		two_stack_moves.c stack_utils.c short_stack_algorithm.c \
+		long_stack_algorithm.c slots.c
 CFILESB = checker.c get_size.c get_input.c utils.c one_stack_moves.c \
 		two_stack_moves.c stack_utils.c
 
@@ -41,6 +42,20 @@ all:		${NAME} ${NAMEB}
 test:	${NAME} ${NAMEB}
 		./${NAME} "2 1 3 6 5 8"
 		./${NAME} "2 1 3 6 5 8" | ./${NAMEB} "2 1 3 6 5 8"
+
+test3:	${NAME} ${NAMEB}
+		./${NAME} "1 2 3" | ./${NAMEB} "1 2 3"
+		./${NAME} "2 1 3" | ./${NAMEB} "2 1 3"
+		./${NAME} "3 2 1" | ./${NAMEB} "3 2 1"
+		./${NAME} "1 3 2" | ./${NAMEB} "1 3 2"
+
+test5:	${NAME} ${NAMEB}
+		./${NAME} "1 0 2 4 3" | ./${NAMEB} "1 0 2 4 3"
+
+test11:	${NAME} ${NAMEB}
+		./${NAME} "1 4 11 9 2 3 10 98 7 6 8"
+		./${NAME} "1 4 11 9 2 3 10 98 7 6 8" | ./${NAMEB} "1 4 11 9 2 3 10 98 7 6 8"
+		./${NAME} "1 4 11 9 2 3 10 98 7 6 8" | ./checker_linux "1 4 11 9 2 3 10 98 7 6 8"
 
 error:		all
 		./${NAME} 0 -2 3 4 3
