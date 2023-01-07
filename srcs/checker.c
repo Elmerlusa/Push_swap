@@ -12,9 +12,9 @@
 
 #include "checker.h"
 
-static t_list	**get_moves(void);
+static t_list	*get_moves(void);
 static int		execute_moves(t_stack stack_a, t_stack stack_b, \
-							t_list **move_list);
+							t_list *move_list);
 static int		moves(t_stack stack_a, t_stack stack_b, char *move);
 
 int	main(int argc, char *argv[])
@@ -22,7 +22,7 @@ int	main(int argc, char *argv[])
 	t_stack	stack_a;
 	t_stack	stack_b;
 	int		stack_size;
-	t_list	**move_list;
+	t_list	*move_list;
 
 	if (argc == 1)
 		return (0);
@@ -42,7 +42,7 @@ int	main(int argc, char *argv[])
 		ft_putstr_fd("Error\n", 2);
 	free_stack(stack_a);
 	free_stack(stack_b);
-	ft_lstclear(move_list, &free);
+	ft_lstclear(&move_list, free);
 	return (0);
 }
 
@@ -75,32 +75,30 @@ static int	moves(t_stack stack_a, t_stack stack_b, char *move)
 	return (1);
 }
 
-static int	execute_moves(t_stack stack_a, t_stack stack_b, t_list **move_list)
+static int	execute_moves(t_stack stack_a, t_stack stack_b, t_list *move_list)
 {
 	char	*move;
 
-	while (*move_list != NULL)
+	while (move_list != NULL)
 	{
-		move = (*move_list)->content;
+		move = move_list->content;
 		if (moves(stack_a, stack_b, move) == -1)
 			return (-1);
-		*move_list = (*move_list)->next;
+		move_list = move_list->next;
 	}
 	return (1);
 }
 
-static t_list	**get_moves(void)
+static t_list	*get_moves(void)
 {
-	t_list	**move_list;
+	t_list	*move_list;
 	char	*line;
 
-	move_list = (t_list **)ft_calloc(1, sizeof(t_list *));
-	if (move_list == NULL)
-		return (NULL);
+	move_list = NULL;
 	line = get_next_line(STDIN_FILENO);
 	while (line != NULL)
 	{
-		ft_lstadd_back(move_list, ft_lstnew(line));
+		ft_lstadd_back(&move_list, ft_lstnew(line));
 		line = get_next_line(STDIN_FILENO);
 	}
 	return (move_list);
