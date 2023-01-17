@@ -92,7 +92,10 @@ int	check_overflow(char *expected_num)
 	index = 0;
 	arr_num = ft_itoa(ft_atoi(expected_num));
 	if (ft_strncmp(arr_num, "0", ft_strlen(arr_num)) == 0)
+	{
+		free(arr_num);
 		return (check_zero(expected_num));
+	}
 	if (*expected_num == '+')
 		expected_num++;
 	else if (*expected_num == '-' && *arr_num == '-')
