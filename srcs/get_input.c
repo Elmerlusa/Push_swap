@@ -35,7 +35,7 @@ int	*get_input(char *argv[], int stack_size)
 			return (NULL);
 		}
 	}
-	if (check_duplicates(stack_a, stack_size) == 0)
+	if (check_duplicates(stack_a, stack_size) == -1)
 	{
 		free(stack_a);
 		return (NULL);
