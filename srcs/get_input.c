@@ -54,7 +54,10 @@ static int	check_value_input(char *arg, int *stack, int stack_size, int *index)
 	{
 		if (check_number(split[split_index]) == 0
 			|| check_overflow(split[split_index]) == 0)
+		{
+			free_split(split);
 			return (0);
+		}
 		stack[stack_size - 1 - *index] = ft_atoi(split[split_index]);
 		*(index) += 1;
 	}
