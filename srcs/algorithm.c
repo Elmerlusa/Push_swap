@@ -62,8 +62,6 @@ static void	push_max(t_stack stack_dst, t_stack stack_src)
 
 void	short_stack_algorithm(t_stack stack_a, t_stack stack_b)
 {
-	if (is_sorted(stack_a))
-		return ;
 	if (*(stack_a.size) == 2)
 		stack_swap(stack_a, SWAP_A);
 	else

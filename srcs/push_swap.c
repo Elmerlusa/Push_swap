@@ -36,6 +36,8 @@ int	main(int argc, char *argv[])
 
 static void	sort_stack(t_stack stack_a, t_stack stack_b)
 {
+	if (is_sorted(stack_a))
+		return ;
 	if (*(stack_a.size) <= 10)
 		short_stack_algorithm(stack_a, stack_b);
 	else
